@@ -129,12 +129,13 @@ int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
     }    
 
   /*  wypisz(wektor,n,licznik_struktur);*/
+  if(stat == 1)
     wypisz(wektor_wynikowy,n,licznik_struktur_wynikowy);
    printf("Udało się odczytać pliki i wygenerować wektor struktur!\n");
     if(generuj(wektor_wynikowy,licznik_struktur_wynikowy,n,wyrazy) != 0){
         return 1;
     }
-    if(stat_in(wektor,licznik_struktur,wektor_wynikowy,licznik_struktur_wynikowy,n) != 0)
+    if(stat_in(wektor,licznik_struktur,wektor_wynikowy,licznik_struktur_wynikowy,n, stat) != 0)
         return 1;
     free(wektor);
     free(wektor_wynikowy);

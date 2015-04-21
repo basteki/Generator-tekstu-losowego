@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
 	int flaga_z = 0;
 	int flaga_stat = 0;
    
-   char *output = "../utworzone/output.txt";
+   char *output = "../utworzone/tekst.txt";
 	FILE *out = fopen(output, "w");
  //flagi długości 
 if (argc == 1){
@@ -123,7 +123,7 @@ else if (strcmp( argv[1], "-stat") == 0){
 }
 // inne flagi
 else if (strcmp( argv[1], "-help") == 0){   // DO UZUPEŁNIENIA PÓŹNIEJ
-	printf( "Placeholder - opis działania programu \n");
+printf( "Witamy w programie sluzacym do generacji pseudo losowego tekstu! Przykladowe wywolanie: \n a.out -s 15 plikwyjsciowy.txt 4 tekstwejsciowy1.txt tekst2.txt tekst3.txt ...\n Gdzie pierwszy argument to flaga wywolania (w tym wypadku podajaca format dlugosci - slowa) drugi argument to ilosc jednostek obranych flaga, trzeci - plik docelowy, czwarty - wielkosc n-gramu(domyslnie 2), a pozostale pliki to tekst na ktorym program bedzie bazowal \n Dostępne flagi:\n  -s dlugosc okreslana iloscia slow\n -a dlugosc okreslana iloscia akapitow\n -z dlugosc okreslana iloscia zdan.\n -stat dodatkowy wypis prawdopodobienstwa uzycia slow zawartych w wygenerowanych zdaniach (np w celach testu algorytmu)\n");
     return 0;
 }
 

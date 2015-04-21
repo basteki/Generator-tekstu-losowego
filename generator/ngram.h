@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int stat_in(struct gram[],int,struct gram[],int,int);
-int stat_out(int);
+int stat_in(struct gram[],int,struct gram[],int,int,int);
+int stat_out(int,int);
 
 #endif

@@ -1,19 +1,20 @@
 #include "ngram.h"
 
-int stat_in(struct gram wektor[],int licznik,struct gram wektor_wynikowy[],int licznikwynikowy,int n){
+int stat_in(struct gram wektor[],int licznik,struct gram wektor_wynikowy[],int licznikwynikowy,int n, int stat){
 
     int i,j,k,MAX,b;
     double pw;
-    FILE *outt = fopen("../utworzone/stat_in.txt", "w");
+	
+		FILE *outt = fopen("../utworzone/stat_in.txt", "w");
     if (outt == NULL){
         printf("nie można pisać do pliku staty_wejścia.txt\n");
         return 1;
     }
-    
+    if(stat == 1)
     fprintf(outt,"Ilość wydenerowanych n-gramów: %d\nIlość słów w tekście wejściowym: %d\n",licznikwynikowy,licznik+n-1);
 
     /*najczesciej powtarzające się n-gramy*/
-    
+	if(stat == 1)
     fprintf(outt,"\nNajczęściej powtarzające się n-gramy\n\n");
     for(k = 0; k < 10; k++){
         MAX = 0;
@@ -26,11 +27,14 @@ int stat_in(struct gram wektor[],int licznik,struct gram wektor_wynikowy[],int l
         if(wektor_wynikowy[b].i == 0)
             break;
         pw = ((double)wektor_wynikowy[b].i)/((double)licznikwynikowy);
-        fprintf(outt,"%2d. [",k+1);
+		if(stat == 1)
+			fprintf(outt,"%2d. [",k+1);
         for(i = 0; i < n; i++){
-            fprintf(outt,"%s ",wektor_wynikowy[b].tabgram[i]);
+			if(stat == 1)
+				fprintf(outt,"%s ",wektor_wynikowy[b].tabgram[i]);
         }
-        fprintf(outt,"] - ilość wystąpień: %-3d, prawdopodobieńśtwo wystąpienia w tekście: %f]\n",wektor_wynikowy[b].i,pw);
+		if(stat == 1)
+			fprintf(outt,"] - ilość wystąpień: %-3d, prawdopodobieńśtwo wystąpienia w tekście: %f]\n",wektor_wynikowy[b].i,pw);
         wektor_wynikowy[b].i = 0;
     }
 
@@ -42,7 +46,7 @@ int stat_in(struct gram wektor[],int licznik,struct gram wektor_wynikowy[],int l
 }
 
 
-int stat_out(int wyrazy){
+int stat_out(int wyrazy, int stat){
 
     int a, b, i, j, k, flaga, MAX;
     i = 1;
@@ -71,7 +75,7 @@ int stat_out(int wyrazy){
         printf("nie udało się zaalokować pamięci do statystyk\n");
         return 1;
     }
-
+if(stat == 1)
     fprintf(outt,"Wyrazy w tekscie wyjściowym: %d\n",wyrazy);
 
     for(a = 0; a < 30; a++){
@@ -120,6 +124,7 @@ int stat_out(int wyrazy){
         if(tablica[b].i == 0)
             break;
         pw = ((double)tablica[b].i)/((double)wyrazy);
+		if(stat == 1)
         fprintf(outt,"%2d. [%-15s - ilość wystąpień: %-4d, prawdopodobieńśtwo wystąpienia w tekście: %f]\n",k+1,tablica[b].slowo,tablica[b].i,pw);
         tablica[b].i = 0;
     }
