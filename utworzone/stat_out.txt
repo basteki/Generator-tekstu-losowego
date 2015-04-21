@@ -1,0 +1,11 @@
+Wyrazy w tekscie wyjściowym: 100
+ 1. [w               - ilość wystąpień: 2   , prawdopodobieńśtwo wystąpienia w tekście: 0.020000]
+ 2. [               - ilość wystąpień: 2   , prawdopodobieńśtwo wystąpienia w tekście: 0.020000]
+ 3. [nie             - ilość wystąpień: 2   , prawdopodobieńśtwo wystąpienia w tekście: 0.020000]
+ 4. [i               - ilość wystąpień: 2   , prawdopodobieńśtwo wystąpienia w tekście: 0.020000]
+ 5. [z               - ilość wystąpień: 2   , prawdopodobieńśtwo wystąpienia w tekście: 0.020000]
+ 6. [za              - ilość wystąpień: 2   , prawdopodobieńśtwo wystąpienia w tekście: 0.020000]
+ 7. [ludzi;          - ilość wystąpień: 1   , prawdopodobieńśtwo wystąpienia w tekście: 0.010000]
+ 8. [bo              - ilość wystąpień: 1   , prawdopodobieńśtwo wystąpienia w tekście: 0.010000]
+ 9. [szanujem        - ilość wystąpień: 1   , prawdopodobieńśtwo wystąpienia w tekście: 0.010000]
+10. [nich            - ilość wystąpień: 1   , prawdopodobieńśtwo wystąpienia w tekście: 0.010000]

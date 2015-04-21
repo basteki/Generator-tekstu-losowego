@@ -1,39 +1,38 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "read.h"
 
-int main (int argc, char **argv){
+int main(int argc, char* argv[]){
 
-
-int n = 2; // rz¹d n-gramów, domyœlnie 2
-int a = 4; // liczba akapitów do generacji, domyœlnie 4
-int s = 80; // liczba s³ów do generacji, domyœlnie 80
-int z = 16; // liczba zdañ do generacji, domyœlnie 16
+	int n = 2; // rzÄ…d n-gramÃ³w, domyÅ›lnie 2
+	int a = 4; // liczba akapitÃ³w do generacji, domyÅ›lnie 4
+	int s = 80; // liczba sÅ‚Ã³w do generacji, domyÅ›lnie 80
+	int z = 16; // liczba zdaÅ„ do generacji, domyÅ›lnie 16
+   
+	int i, tmp;
+    
+	int  p = 0;
+	char * pEnd;
+	int max_s = 2048;
+	int max_a = 100;
+	int max_z = 400;
  
- int max_s = 2048;
- int max_a = 100;
- int max_z = 400;
- 
-  int flaga_s = 0;
-  int flaga_a = 0;
-  int flaga_z = 0;
-  int flaga_stat = 0;
-  
-int i, j, tmp;
-
-FILE *in[20];
-FILE *out = "output.txt";
-
-char * pEnd; 
- //flagi d³ugoœci 
+	int flaga_s = 0;
+	int flaga_a = 0;
+	int flaga_z = 0;
+	int flaga_stat = 0;
+   
+   char *output = "../utworzone/output.txt";
+	FILE *out = fopen(output, "w");
+ //flagi dÅ‚ugoÅ›ci 
 if (argc == 1){
-    fprintf( stderr, "%s: b³¹d: proszê podaæ flagê wywo³ania (wpisz '-help' aby dowiedzieæ siê wiêcej)\n", argv[0] ); 
+    fprintf( stderr, "%s: bÅ‚Ä…d: proszÄ™ podaÄ‡ flagÄ™ wywoÅ‚ania (wpisz '-help' aby dowiedzieÄ‡ siÄ™ wiÄ™cej)\n", argv[0] ); 
     return EXIT_FAILURE;
 }
 
 if (argc > 21){
-	fprintf( stderr, "%s: b³¹d: zbyt du¿o arumentów (wpisz '-help' aby dowiedzieæ siê wiêcej)\n", argv[0] ); 
+	fprintf( stderr, "%s: bÅ‚Ä…d: zbyt duÅ¼o arumentÃ³w (wpisz '-help' aby dowiedzieÄ‡ siÄ™ wiÄ™cej)\n", argv[0] ); 
     return EXIT_FAILURE;
 }
 
@@ -45,7 +44,7 @@ if (strcmp( argv[1], "-s") == 0){
 		}
 	}
     else{
-		fprintf( stderr, "%s: b³¹d! Prosz¹ podaæ w³aœciw¹ liczbê s³ów do generacji \n", argv[0]);
+		fprintf( stderr, "%s: bÅ‚Ä…d! ProszÄ… podaÄ‡ wÅ‚aÅ›ciwÄ… liczbÄ™ sÅ‚Ã³w do generacji \n", argv[0]);
             return EXIT_FAILURE;
     }
 }
@@ -58,7 +57,7 @@ else if (strcmp( argv[1], "-a") == 0){
 		}
 	}
     else{
-		fprintf( stderr, "%s: b³¹d! Prosz¹ podaæ w³aœciw¹ liczbê akapitów do generacji \n", argv[0]);
+		fprintf( stderr, "%s: bÅ‚Ä…d! ProszÄ… podaÄ‡ wÅ‚aÅ›ciwÄ… liczbÄ™ akapitÃ³w do generacji \n", argv[0]);
         return EXIT_FAILURE;
     }
 }
@@ -71,7 +70,7 @@ else if (strcmp( argv[1], "-z") == 0){
 		}
 	}
     else{
-		fprintf( stderr, "%s: blad! Prosz¹ podaæ w³aœciw¹ liczbê zdañ do generacji \n", argv[0]);
+		fprintf( stderr, "%s: blad! ProszÄ… podaÄ‡ wÅ‚aÅ›ciwÄ… liczbÄ™ zdaÅ„ do generacji \n", argv[0]);
         return EXIT_FAILURE;
     }
 }
@@ -86,7 +85,7 @@ else if (strcmp( argv[1], "-sstat") == 0){
 		}
 	}
     else{
-		fprintf( stderr, "%s: b³¹d! Prosz¹ podaæ w³aœciw¹ liczbê s³ów do generacji \n", argv[0]);
+		fprintf( stderr, "%s: bÅ‚Ä…d! ProszÄ… podaÄ‡ wÅ‚aÅ›ciwÄ… liczbÄ™ sÅ‚Ã³w do generacji \n", argv[0]);
         return EXIT_FAILURE;
     }
 }
@@ -100,7 +99,7 @@ else if (strcmp( argv[1], "-astat") == 0){
 		}
 	}
     else{
-		fprintf( stderr, "%s: b³¹d! Prosz¹ podaæ w³aœciw¹ liczbê akapitów do generacji \n", argv[0]);
+		fprintf( stderr, "%s: bÅ‚Ä…d! ProszÄ… podaÄ‡ wÅ‚aÅ›ciwÄ… liczbÄ™ akapitÃ³w do generacji \n", argv[0]);
         return EXIT_FAILURE;
     }
 }
@@ -114,7 +113,7 @@ else if (strcmp( argv[1], "-zstat") == 0){
 		}
 	}
     else{
-		fprintf( stderr, "%s: b³¹d! Prosz¹ podaæ w³aœciw¹ liczbê zdañ do generacji \n", argv[0]);
+		fprintf( stderr, "%s: bÅ‚Ä…d! ProszÄ… podaÄ‡ wÅ‚aÅ›ciwÄ… liczbÄ™ zdaÅ„ do generacji \n", argv[0]);
         return EXIT_FAILURE;
     }
 }
@@ -123,58 +122,55 @@ else if (strcmp( argv[1], "-stat") == 0){
     flaga_stat = 1;
 }
 // inne flagi
-else if (strcmp( argv[1], "-help") == 0){   // DO UZUPE£NIENIA PÓNIEJ
-	printf( "Placeholder - opis dzia³ania programu \n");
+else if (strcmp( argv[1], "-help") == 0){   // DO UZUPEÅNIENIA PÃ“Å¹NIEJ
+	printf( "Placeholder - opis dziaÅ‚ania programu \n");
     return 0;
 }
 
 else if (strcmp( argv[1], "-d") != 0){
-	fprintf( stderr, "%s: b³¹d! Prosze podaæ flagê wywo³ania (-help for more info) \n", argv[0]);
+	fprintf( stderr, "%s: bÅ‚Ä…d! Prosze podaÄ‡ flagÄ™ wywoÅ‚ania (-help for more info) \n", argv[0]);
     return EXIT_FAILURE;
 }
-//obs³uga pozosta³ych argumentów
+//obsÅ‚uga pozostaÅ‚ych argumentÃ³w
 if ((flaga_s == 1 || flaga_a == 1 || flaga_z == 1) && argc == 4){
 	if (strtol(argv[3],&pEnd,10) != 0L)
 		n = atoi(argv[3]);
 	else
-		out = argv[3];
+		out = fopen(argv[3], "w");
 }
 
 if ((flaga_s == 1 || flaga_a == 1 || flaga_z == 1) && argc == 5){
 	if ((strtol(argv[3],&pEnd,10) == 0L) && (strtol(argv[4],&pEnd,10) != 0L)){
-		out = argv[3];
+		out = fopen(argv[3], "w");
 		n = atoi(argv[4]);
 	}
 	else if ((strtol(argv[3],&pEnd,10) != 0L) && (strtol(argv[4],&pEnd,10) == 0L)){
 		n = atoi(argv[3]);
-		in[0] = argv[4];
+		
+		p = 4;
 	}
 	else if ((strtol(argv[3],&pEnd,10) == 0L) && (strtol(argv[4],&pEnd,10) == 0L)){
-		out = argv[3];
-		in[0] = argv[4];
+		out = fopen(argv[3], "w");
+		p = 4;			
 	}
 }
 
 if ((flaga_s == 1 || flaga_a == 1 || flaga_z == 1) && argc > 5){
 	if ((strtol(argv[3],&pEnd,10) == 0L) && (strtol(argv[4],&pEnd,10) != 0L)){
-		out = argv[3];
+		out = fopen(argv[3], "w");
 		n = atoi(argv[4]);
-		for(i = 5, j = 0; i<argc; i++, j++){
-			in[j] = argv[i];
-		}
+		p = 5;
 	}
 
 	else if ((strtol(argv[3],&pEnd,10) != 0L) && (strtol(argv[4],&pEnd,10) == 0L)){
 		n = atoi(argv[3]);
-		for(i = 4, j = 0; i<argc; i++, j++){
-			in[j] = argv[i];
-		}
+		p = 4;
+		
 	}
 	else if ((strtol(argv[3],&pEnd,10) == 0L) && (strtol(argv[4],&pEnd,10) == 0L)){
-		out = argv[3];
-		for(i = 4, j = 0; i<argc; i++, j++){
-			in[j] = argv[i];
-		}
+		out = fopen(argv[3], "w");
+		p = 4;
+		
 	}
 }
 
@@ -182,48 +178,106 @@ if ((flaga_s == 0 && flaga_a == 0 && flaga_z == 0) && argc == 3){
 	if (strtol(argv[2],&pEnd,10) != 0L)
 		n = atoi(argv[2]);
 	else 
-		out = argv[2];
+		out = fopen(argv[2], "w");
 }
 
 if ((flaga_s == 0 && flaga_a == 0 && flaga_z == 0) && argc == 4){
 	if ((strtol(argv[2],&pEnd,10) == 0L) && (strtol(argv[3],&pEnd,10) != 0L)){
-		out = argv[2];
+		out = fopen(argv[2], "w");
 		n = atoi(argv[3]);
 	}
 	else if (strtol(argv[2],&pEnd,10) != 0L && (strtol(argv[3],&pEnd,10) == 0L)){
 		n = atoi(argv[2]);
-		in[0] = argv[3];
+		p = 3 ;
 	}
 	else if (strtol(argv[2],&pEnd,10) == 0L && (strtol(argv[3],&pEnd,10) == 0L)){
-		out = argv[2];
-		in[0] = argv[3];
+		out = fopen(argv[2], "w");
+		p = 3;
 	}
 }
 
 if ((flaga_s == 0 && flaga_a == 0 && flaga_z == 0) && argc > 4){
 	if ((strtol(argv[2],&pEnd,10) == 0L) && (strtol(argv[3],&pEnd,10) != 0L)){
-		out = argv[2];
+		out = fopen(argv[2], "w");
 		n = atoi(argv[3]);
-		for(i = 4, j = 0; i<argc; i++, j++){
-			in[j] = argv[i];
-		}
+		p = 4;
+		
 	}
 
 	else if ((strtol(argv[2],&pEnd,10) != 0L) && (strtol(argv[3],&pEnd,10) == 0L)){
 		n = atoi(argv[2]);
-		for(i = 3, j = 0; i<argc; i++, j++){
-			in[j] = argv[i];
-		}
+		p = 3;
 	}
 	else if ((strtol(argv[2],&pEnd,10) == 0L) && (strtol(argv[3],&pEnd,10) == 0L)){
-		out = argv[2];
-		for(i = 3, j = 0; i<argc; i++, j++){
-			in[j] = argv[i];
-		}
+		out = fopen(argv[2], "w");
+		p = 3;
 	}
 }
+if(flaga_s == 1){
+	a = s/20;
+	z = s/5;
+}
+if(flaga_a == 1){
+	s = a*20;
+	z = a*4;
+}
+if(flaga_z == 1){
+	a = z/4;
+	s = z*5;
+}
 
-printf("n = %i \n s = %i \n a = %i \n z = %i \n out = %s \n flaga s = %i \n flaga stat = %i \n", n, s , a, z, out, flaga_s, flaga_stat);
-for (i = 0; i == 6; i++)
-	printf("in = %s", in[i])
+if(flaga_s == 1){
+	a = s/20;
+	z = s/5;
+}
+if(flaga_a == 1){
+	s = a*20;
+	z = a*4;
+}
+if(flaga_z == 1){
+	a = z/4;
+	s = z*5;
+}
+
+    FILE *in[30];
+    int x = 0;
+    char *folder = "../baza/";
+    char buf[100];
+    strcpy(buf,folder);
+    int d = 8;
+    
+            for( tmp = p; tmp < argc; tmp++){
+                if(strcmp(argv[tmp], "-n") == 0 || strcmp(argv[tmp],"-w") == 0 || strcmp(argv[tmp],"-a") == 0){
+                    break;
+                }else{
+                    /*odczyt plikÃ³w*/
+                    for(d = 8; d < 100; d++){
+                        buf[d] = argv[tmp][d-8];
+                    }
+                    in[x] = fopen(buf, "r");
+                    if (in[x] == NULL){
+                        printf("Nie mozna otworzyc %s\n", argv[tmp]);
+                        return 1;
+                    }
+                }
+                x++;
+            }
+        
+    
+
+    int ile_slow;
+    ile_slow = slowa(in,x);
+   /* printf("liosc slow w tekstach = %d\n" ,ile_slow);*/
+ if(ile_slow < n || ile_slow < s){
+	printf("Teksty ÅºrÃ³dÅ‚owe zawierajÄ… zbyt maÅ‚o tekstu! WprowadÅº wiÄ™kszÄ… bazÄ™ lub zmniejsz wymagania iloÅ›ci sÅ‚Ã³w/ wielkoÅ›ci ngramu do generacji.\n");
+	return 1;
+}
+	
+    if(read_file(n,in,x,ile_slow,s, flaga_stat) != 0){
+        return 1;
+    }
+    
+    for(d = 0; d < x; d++)
+       fclose(in[d]);
+    return 0;
 }
