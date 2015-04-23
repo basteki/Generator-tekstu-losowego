@@ -16,6 +16,6 @@ void wypisz(struct gram wektor[], int n, int licznik_struktur){
             fprintf(out,"[%s]",wektor[k].tabslowa[i]);
         fprintf(out,"\n");
     }   
-    fprintf (out,"ilość  =  %d \n", licznik_struktur);
+    fprintf (out,"ilosc  =  %d \n", licznik_struktur);
     fclose(out);
 }

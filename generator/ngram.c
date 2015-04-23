@@ -11,7 +11,7 @@ int stat_in(struct gram wektor[],int licznik,struct gram wektor_wynikowy[],int l
         return 1;
     }
     if(stat == 1)
-    fprintf(outt,"Ilość wydenerowanych n-gramów: %d\nIlość słów w tekście wejściowym: %d\n",licznikwynikowy,licznik+n-1);
+    fprintf(outt,"Ilość wygenerowanych n-gramów: %d\nIlość słów w tekście wejściowym: %d\n",licznikwynikowy,licznik+n-1);
 
     /*najczesciej powtarzające się n-gramy*/
 	if(stat == 1)
@@ -34,11 +34,11 @@ int stat_in(struct gram wektor[],int licznik,struct gram wektor_wynikowy[],int l
 				fprintf(outt,"%s ",wektor_wynikowy[b].tabgram[i]);
         }
 		if(stat == 1)
-			fprintf(outt,"] - ilość wystąpień: %-3d, prawdopodobieńśtwo wystąpienia w tekście: %f]\n",wektor_wynikowy[b].i,pw);
+			fprintf(outt,"] - ilosc wystapien: %-3d, prawdopodobienstwo wystapienia w tekscie: %f]\n",wektor_wynikowy[b].i,pw);
         wektor_wynikowy[b].i = 0;
     }
 
-    printf("Udało się wygenerować statystyki dla pliku wejsciowego\n\n");
+    printf("Wygenerowano statystyki dla pliku wejsciowego\n\n");
 
 
     fclose(outt);
@@ -57,11 +57,11 @@ int stat_out(int wyrazy, int stat){
     FILE *outt = fopen("../utworzone/stat_out.txt","w");
 
     if (plik == NULL){
-        printf("nie można czytac pliku tekst.txt\n");
+        printf("Nie mozna czytac pliku tekst.txt\n");
         return 1;
     }
     if (outt == NULL){
-        printf("nie można pisać do pliku stat_out.txt\n");
+        printf("Nie mozna pisac do pliku stat_out.txt\n");
         return 1;
     }
 
@@ -72,14 +72,14 @@ int stat_out(int wyrazy, int stat){
     struct statystyki *tablica = malloc(wyrazy*sizeof(struct statystyki));
 
     if (tablica == NULL){
-        printf("nie udało się zaalokować pamięci do statystyk\n");
+        printf("Blad alokacji statystyk\n");
         return 1;
     }
 if(stat == 1)
-    fprintf(outt,"Wyrazy w tekscie wyjściowym: %d\n",wyrazy);
+    fprintf(outt,"Wyrazy w tekscie wyjsciowym: %d\n",wyrazy);
 
     for(a = 0; a < 30; a++){
-        if((c = getc(plik)) == ' ' || c == '\n' || c == EOF || c == '\t'){
+        if((c = getc(plik)) == ' ' || c == '\n' || c == EOF || c == '\t' || c == '.'){
             tablica[0].slowo[a] = '\0';
             break;
         }
@@ -91,7 +91,7 @@ if(stat == 1)
     for(k = 1; k < wyrazy; k++){
         flaga = 0;
         for(a = 0; a < 30; a++){
-            if((c = getc(plik)) == ' ' || c == '\n' || c == EOF || c == '\t'){
+            if((c = getc(plik)) == ' ' || c == '\n' || c == EOF || c == '\t' || c == '.'){
                 buff[a] = '\0';
                 break;
             }
@@ -125,11 +125,11 @@ if(stat == 1)
             break;
         pw = ((double)tablica[b].i)/((double)wyrazy);
 		if(stat == 1)
-        fprintf(outt,"%2d. [%-15s - ilość wystąpień: %-4d, prawdopodobieńśtwo wystąpienia w tekście: %f]\n",k+1,tablica[b].slowo,tablica[b].i,pw);
+        fprintf(outt,"%2d. [%-15s - ilosc wystapien: %-4d, prawdopodobienstwo wystapienia w tekscie: %f]\n",k+1,tablica[b].slowo,tablica[b].i,pw);
         tablica[b].i = 0;
     }
 
-    printf("Udało się wygenerować statystyki dla pliku wyjściowego\n");
+    printf("Wygenerowano statystyki dla pliku wyjściowego\n");
     free(tablica);
     fclose(plik);
     fclose(outt);

@@ -36,7 +36,6 @@ int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
     char c;
 
     for(a = 0; a < s; a++){
-        /*odczytanie pierwszego n-gramu z pliku*/
         for (j = 0; j < n; j++){
             for (i = 0; i < MAXLITER; i++){
                 c = getc(plik[a]);
@@ -49,15 +48,15 @@ int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
 
         for (i = 0; i < MAXLITER; i++){
             c = getc(plik[a]);
-            if(c == ' ' || c == '\n' ||c == EOF || c == '\t')
+            if(c == ' ' || c == '\n' ||c == EOF || c == '\t' || c == '.')
                 break; 
             wektor[licznik_struktur].tabslowa[0][i] = c;
         }
         wektor[licznik_struktur].tabslowa[0][i] = '\0';
         wektor[licznik_struktur].i = 1;
         ++licznik_struktur;
-        /*odczytywanie kolejnych n-gramów*/
-        while( licznik_struktur < lw){
+        
+	while( licznik_struktur < lw){
             for(j = 0; j < (n-1); j++){
                 for(i = 0; i < MAXLITER; i++){
                     wektor[licznik_struktur].tabgram[j][i] = wektor[licznik_struktur - 1].tabgram[j+1][i];
@@ -68,7 +67,7 @@ int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
 
             for (i = 0; i < MAXLITER; i++){
                 c = getc(plik[a]);
-                if(c == ' ' || c == '\n' || c == EOF || c == '\t')
+                if(c == ' ' || c == '\n' || c == EOF || c == '\t' || c == '.')
                     break; 
                 wektor[licznik_struktur].tabslowa[0][i] = c;
             }
@@ -83,7 +82,7 @@ int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
             }
         }
     }
-    /*sprawdzanie powtorzen i tworzenie wektora wynikowego */
+    
     struct gram *wektor_wynikowy = malloc(lw*sizeof(struct gram));
     if(!wektor_wynikowy)
         printf("brak pamieci!\n");
@@ -128,11 +127,11 @@ int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
         }
     }    
 
-  /*  wypisz(wektor,n,licznik_struktur);*/
+  
   if(stat == 1)
     wypisz(wektor_wynikowy,n,licznik_struktur_wynikowy);
-   printf("Udało się odczytać pliki i wygenerować wektor struktur!\n");
-    if(generuj(wektor_wynikowy,licznik_struktur_wynikowy,n,wyrazy) != 0){
+   printf("Odczytano pliki i wygenerowano wektor struktur!\n");
+    if(generuj(wektor_wynikowy,licznik_struktur_wynikowy,n,wyrazy,stat) != 0){
         return 1;
     }
     if(stat_in(wektor,licznik_struktur,wektor_wynikowy,licznik_struktur_wynikowy,n, stat) != 0)

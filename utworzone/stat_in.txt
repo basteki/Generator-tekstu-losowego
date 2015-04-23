@@ -1,15 +1,0 @@
-Ilość wydenerowanych n-gramów: 62978
-Ilość słów w tekście wejściowym: 69786
-
-Najczęściej powtarzające się n-gramy
-
- 1. [si� w ] - ilość wystąpień: 74 , prawdopodobieńśtwo wystąpienia w tekście: 0.001175]
- 2. [� rzek� ] - ilość wystąpień: 68 , prawdopodobieńśtwo wystąpienia w tekście: 0.001080]
- 3. [si� z ] - ilość wystąpień: 66 , prawdopodobieńśtwo wystąpienia w tekście: 0.001048]
- 4. [  ] - ilość wystąpień: 60 , prawdopodobieńśtwo wystąpienia w tekście: 0.000953]
- 5. [si� i ] - ilość wystąpień: 55 , prawdopodobieńśtwo wystąpienia w tekście: 0.000873]
- 6. [si� na ] - ilość wystąpień: 45 , prawdopodobieńśtwo wystąpienia w tekście: 0.000715]
- 7. [i z ] - ilość wystąpień: 42 , prawdopodobieńśtwo wystąpienia w tekście: 0.000667]
- 8. [i w ] - ilość wystąpień: 39 , prawdopodobieńśtwo wystąpienia w tekście: 0.000619]
- 9. [I z ] - ilość wystąpień: 30 , prawdopodobieńśtwo wystąpienia w tekście: 0.000476]
-10. [co si� ] - ilość wystąpień: 28 , prawdopodobieńśtwo wystąpienia w tekście: 0.000445]

@@ -245,35 +245,38 @@ if(flaga_z == 1){
     char buf[100];
     strcpy(buf,folder);
     int d = 8;
-    
-            for( tmp = p; tmp < argc; tmp++){
-                if(strcmp(argv[tmp], "-n") == 0 || strcmp(argv[tmp],"-w") == 0 || strcmp(argv[tmp],"-a") == 0){
-                    break;
-                }else{
-                    /*odczyt plików*/
-                    for(d = 8; d < 100; d++){
-                        buf[d] = argv[tmp][d-8];
-                    }
-                    in[x] = fopen(buf, "r");
-                    if (in[x] == NULL){
-                        printf("Nie mozna otworzyc %s\n", argv[tmp]);
-                        return 1;
-                    }
-                }
-                x++;
-            }
+    char *domyslny = "../baza/Krzyzacy.txt"; 
+    if(p == 0){
+	strcpy(buf,domyslny);
+	in[x] = fopen(buf, "r");
+	x++;
+    }
+    else{
+        for( tmp = p; tmp < argc; tmp++){
+    	   /*odczyt plików*/
+              for(d = 8; d < 100; d++){
+                 buf[d] = argv[tmp][d-8];
+              }
+              in[x] = fopen(buf, "r");
+              if (in[x] == NULL){
+                 printf("Nie mozna otworzyc %s\n", argv[tmp]);
+                 return 1;
+              }
+	x++;
+        }
+   }
         
     
 
     int ile_slow;
     ile_slow = slowa(in,x);
-   /* printf("liosc slow w tekstach = %d\n" ,ile_slow);*/
- if(ile_slow < n || ile_slow < s){
+ 
+if(ile_slow < n || ile_slow < s){
 	printf("Teksty źródłowe zawierają zbyt mało tekstu! Wprowadź większą bazę lub zmniejsz wymagania ilości słów/ wielkości ngramu do generacji.\n");
 	return 1;
 }
 	
-    if(read_file(n,in,x,ile_slow,s, flaga_stat) != 0){
+    if(read_file(n,in,x,ile_slow,s,flaga_stat) != 0){
         return 1;
     }
     
