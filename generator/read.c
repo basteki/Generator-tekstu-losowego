@@ -1,11 +1,11 @@
 #include "read.h"
 
-int slowa(FILE *plik[30], int s){
+int slowa(FILE *plik[30], int x){
     int i, lw, c;
     lw = 0;
     int stan;
 
-    for ( i = 0; i < s; i++){
+    for ( i = 0; i < x; i++){
         stan = 0;
         while((c = getc(plik[i])) != EOF){
             if( c == ' '|| c == '\n' || c == '\t')
@@ -20,7 +20,7 @@ int slowa(FILE *plik[30], int s){
     return lw;
 }
 
-int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
+int read_file (int n,FILE* plik[30],FILE *out,int x, int ile_slow,int wyrazy, int stat){
 
     int lw,i,j,a;
 
@@ -35,7 +35,7 @@ int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
     int licznik_struktur = 0;
     char c;
 
-    for(a = 0; a < s; a++){
+    for(a = 0; a < x; a++){
         for (j = 0; j < n; j++){
             for (i = 0; i < MAXLITER; i++){
                 c = getc(plik[a]);
@@ -131,7 +131,7 @@ int read_file (int n,FILE* plik[30],int s, int ile_slow,int wyrazy, int stat){
   if(stat == 1)
     wypisz(wektor_wynikowy,n,licznik_struktur_wynikowy);
    printf("Odczytano pliki i wygenerowano wektor struktur!\n");
-    if(generuj(wektor_wynikowy,licznik_struktur_wynikowy,n,wyrazy,stat) != 0){
+    if(generuj(out,wektor_wynikowy,licznik_struktur_wynikowy,n,wyrazy,stat) != 0){
         return 1;
     }
     if(stat_in(wektor,licznik_struktur,wektor_wynikowy,licznik_struktur_wynikowy,n, stat) != 0)

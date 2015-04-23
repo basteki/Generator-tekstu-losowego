@@ -1,7 +1,7 @@
 #include "generator.h"
-int generuj(struct gram wektor[],int licznik,int n, int w, int stat){
+int generuj(FILE *out,struct gram wektor[],int licznik,int n, int w, int stat){
 
-    FILE *out = fopen("../utworzone/tekst.txt", "w");
+    FILE *out = fopen(out, "w");
     
     if (out == NULL){
         fprintf(stdout,"0 można pisać do pliku");
@@ -23,7 +23,7 @@ int generuj(struct gram wektor[],int licznik,int n, int w, int stat){
         slowo = rand()%(wektor[pierwszy_n_gram].i);
         fprintf(out,"%s ", wektor[pierwszy_n_gram].tabslowa[slowo]);
 
-    for(k = (n + 1); k < w; k++, z++, a++){
+    for(k = (n + 1); k < w; k++){
         for(l = 0; l < licznik; l++){
             flaga = 1;
             for(j = 0; j < (n-1); j++){
@@ -45,6 +45,8 @@ int generuj(struct gram wektor[],int licznik,int n, int w, int stat){
 				}
 				pierwszy_n_gram = l;
                 ++i;
+				z++;
+				a++;
                 break;
             }
         }

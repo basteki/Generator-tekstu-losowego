@@ -86,6 +86,7 @@ else if (strcmp( argv[1], "-sstat") == 0){
 	}
     else{
 		fprintf( stderr, "%s: błąd! Proszą podać właściwą liczbę słów do generacji \n", argv[0]);
+
         return EXIT_FAILURE;
     }
 }
@@ -243,7 +244,7 @@ if(flaga_z == 1){
     int x = 0;
     char *folder = "../baza/";
     char buf[100];
-    strcpy(buf,folder);
+    strcpy(buf,folder); 
     int d = 8;
     char *domyslny = "../baza/Krzyzacy.txt"; 
     if(p == 0){
@@ -276,7 +277,7 @@ if(ile_slow < n || ile_slow < s){
 	return 1;
 }
 	
-    if(read_file(n,in,x,ile_slow,s,flaga_stat) != 0){
+    if(read_file(n,in,out,x,ile_slow,s,flaga_stat) != 0){
         return 1;
     }
     

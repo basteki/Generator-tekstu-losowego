@@ -6,5 +6,5 @@
 #include <time.h>
 #include "struct.h"
 
-int generuj(struct gram [],int,int,int,int);
+int generuj(FILE *,struct gram [],int,int,int,int);
 #endif
